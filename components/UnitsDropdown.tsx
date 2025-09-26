@@ -13,29 +13,15 @@ import {
     DropdownMenuGroup, 
     DropdownMenuItemIndicator 
 } from "@radix-ui/react-dropdown-menu";
+import { 
+    PrecipType, 
+    TempType, 
+    UnitsType, 
+    WindSpeedType 
+} from "@/types/units";
 import Image from "next/image"
 import { Button } from "./ui/button";
 import { useState } from "react";
-
-export enum UnitsType {
-    Imperial = "Imperial",
-    Metric = "Metric"
-}
-
-export enum TempType {
-    Celsius = "Celsius",
-    Fahrenheit = "Fahrenheit"
-}
-
-export enum WindSpeedType {
-    KmH = "km/h",
-    MpH = "mph"
-}
-
-export enum PrecipType {
-    Millimeters = "Millimeters",
-    Inches = "Inches"
-}
 
 export default function UnitsDropdown() {
     const [unit, setUnit] = useState<UnitsType>(UnitsType.Metric)
@@ -44,14 +30,13 @@ export default function UnitsDropdown() {
     const [precipUnit, setPrecipUnit] = useState<PrecipType>(PrecipType.Millimeters)
 
     const switchUnit = (e: Event) => {
+        e.preventDefault()
         if(unit === UnitsType.Imperial){
-            console.log("Setting all units to Metric")
             setUnit(UnitsType.Metric)
             setTempUnit(TempType.Celsius)
             setWindSpeedUnit(WindSpeedType.KmH)
             setPrecipUnit(PrecipType.Millimeters)
         } else if (unit === UnitsType.Metric) {
-            console.log("Setting all units to Imperial")
             setUnit(UnitsType.Imperial)
             setTempUnit(TempType.Fahrenheit)
             setWindSpeedUnit(WindSpeedType.MpH)
@@ -103,7 +88,10 @@ export default function UnitsDropdown() {
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7 mb-1"
                         checked={tempUnit === TempType.Celsius}
-                        onSelect={(e) => setTempUnit(TempType.Celsius)}
+                        onSelect={(e) => {
+                            e.preventDefault()
+                            setTempUnit(TempType.Celsius)
+                        }}
                     >
                         <span>Celsius (&deg;C)</span>
                         <DropdownMenuItemIndicator className="dropdown-menu-item-indicator">
@@ -120,7 +108,10 @@ export default function UnitsDropdown() {
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7"
                         checked={tempUnit === TempType.Fahrenheit}
-                        onSelect={(e) => setTempUnit(TempType.Fahrenheit)}
+                        onSelect={(e) => {
+                            e.preventDefault()
+                            setTempUnit(TempType.Fahrenheit)
+                        }}
                     >
                         <span>Fahrenheit (&deg;F)</span>
                         <DropdownMenuItemIndicator className="dropdown-menu-item-indicator">
@@ -143,7 +134,10 @@ export default function UnitsDropdown() {
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7 mb-[3px]"
                         checked={windSpeedUnit === WindSpeedType.KmH}
-                        onSelect={(e) => setWindSpeedUnit(WindSpeedType.KmH)}
+                        onSelect={(e) => {
+                            e.preventDefault()
+                            setWindSpeedUnit(WindSpeedType.KmH)
+                        }}
                     >
                         <span>km/h</span>
                         <DropdownMenuItemIndicator className="dropdown-menu-item-indicator">
@@ -160,7 +154,10 @@ export default function UnitsDropdown() {
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7"
                         checked={windSpeedUnit === WindSpeedType.MpH}
-                        onSelect={(e) => setWindSpeedUnit(WindSpeedType.MpH)}
+                        onSelect={(e) => {
+                            e.preventDefault()
+                            setWindSpeedUnit(WindSpeedType.MpH)
+                        }}
                     >
                         <span>mph</span>
                         <DropdownMenuItemIndicator className="dropdown-menu-item-indicator">
@@ -183,7 +180,10 @@ export default function UnitsDropdown() {
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7 mb-1"
                         checked={precipUnit === PrecipType.Millimeters}
-                        onSelect={(e) => setPrecipUnit(PrecipType.Millimeters)}
+                        onSelect={(e) => {
+                            e.preventDefault()
+                            setPrecipUnit(PrecipType.Millimeters)
+                        }}
                     >
                         <span>Millimeters (mm)</span>
                         <DropdownMenuItemIndicator className="dropdown-menu-item-indicator">
@@ -200,7 +200,9 @@ export default function UnitsDropdown() {
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7"
                         checked={precipUnit === PrecipType.Inches}
-                        onSelect={(e) => setPrecipUnit(PrecipType.Inches)}
+                        onSelect={(e) => {
+                            setPrecipUnit(PrecipType.Inches)
+                        }}
                     >
                         <span>Inches (in)</span>
                         <DropdownMenuItemIndicator className="dropdown-menu-item-indicator">
