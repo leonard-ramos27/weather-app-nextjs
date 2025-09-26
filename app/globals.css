@@ -151,6 +151,15 @@ body {
   }
 }
 
+/** TEXT STYLES **/
+.text-preset-2 {
+  @apply font-bricolage-grotesque font-bold text-[52px] leading-[120%] tracking-normal;
+}
+
+.text-preset-5-medium {
+  @apply font-dm-sans font-medium text-xl leading-[120%] tracking-normal;
+}
+
 .text-preset-7 {
   @apply text-[16px] font-dm-sans font-medium leading-[120%] tracking-normal;
 }
@@ -158,6 +167,7 @@ body {
 .text-preset-8 {
   @apply text-sm font-dm-sans font-medium leading-[120%] tracking-normal;
 }
+/** END OF TEXT STYLES **/
 
 /** DROPDOWN MENU STYLES **/
 .dropdown-menu-trigger {
@@ -176,3 +186,19 @@ body {
   @apply relative w-3.5 h-[17px];
 }
 /** END OF DROPDOWN MENU STYLES **/
+
+/** SEARCH BAR STYLES **/
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+input[type="search"]::-ms-clear,
+input[type="search"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+/** END OF SEARCH BAR STYLES **/
