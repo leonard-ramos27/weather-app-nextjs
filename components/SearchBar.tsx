@@ -9,7 +9,7 @@ export default function SearchBar() {
     const [query, setQuery] = useState("")
 
     return (
-        <div>
+        <div className="mb-8 xl:mb-12">
             <form 
                 action="#"
                 className="relative flex flex-col md:flex-row gap-3 md:gap-4 w-full xl:max-w-[656px] mx-auto">
