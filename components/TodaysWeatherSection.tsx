@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function TodaysWeatherSection() {
     return (
-        <div className="todays-weather-section">
+        <div className="todays-weather-section mb-8 xl:mb-12">
             <section className="bg-[url(/images/bg-today-small.svg)] md:bg-[url(/images/bg-today-large.svg)] bg-origin-border bg-center bg-cover bg-no-repeat w-full h-[286px] rounded-[20px] py-[41px] px-[25.5px] md:px-[24px] mb-5 xl:mb-8 flex flex-col md:flex-row justify-start items-center gap-4">
                 <div className="text-center md:text-left md:flex-1">
                     <h2 className="text-preset-4 mb-3">Berlin, Germany</h2>

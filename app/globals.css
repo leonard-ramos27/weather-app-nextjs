@@ -169,6 +169,10 @@ body {
   @apply font-dm-sans font-bold text-[28px] leading-[120%] tracking-normal;
 }
 
+.text-preset-5 {
+  @apply font-dm-sans font-semibold text-xl leading-[120%] tracking-normal;
+}
+
 .text-preset-5-medium {
   @apply font-dm-sans font-medium text-xl leading-[120%] tracking-normal;
 }

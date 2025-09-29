@@ -1,3 +1,4 @@
+import DailyForecastSection from "@/components/DailyForecastSection";
 import SearchBar from "@/components/SearchBar";
 import TodaysWeatherSection from "@/components/TodaysWeatherSection";
 
@@ -11,7 +12,7 @@ export default function Home() {
       <div className="flex flex-col gap-8 xl:flex-row w-full">
         <div className="mb-8 xl:mb-0 xl:flex-1">
           <TodaysWeatherSection />
-          <section></section>
+          <DailyForecastSection />
         </div>
       </div>
     </main>
