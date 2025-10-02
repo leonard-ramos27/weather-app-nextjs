@@ -45,11 +45,11 @@ const weatherCodeToIcon: Record<number, WeatherIconType> = {
   99: "storm",
 };
 
-export default function WeatherIcon({ code }: { code: number}) {
+export default function WeatherIcon({ code, size }: { code: number, size: string}) {
     const src = `/images/icon-${weatherCodeToIcon[code] ?? 'sunny'}.webp`
 
     return (
-        <div className="relative w-[60px] h-[60px]">
+        <div className={`relative ${size === 'small' ? 'w-[40px] h-[40px]' : 'w-[60px] h-[60px]'}`}>
             <Image 
                 src={src}
                 fill
