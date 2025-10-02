@@ -1,4 +1,5 @@
 import DailyForecastSection from "@/components/DailyForecastSection";
+import HourlyForecastSection from "@/components/HourlyForecastSection";
 import SearchBar from "@/components/SearchBar";
 import TodaysWeatherSection from "@/components/TodaysWeatherSection";
 
@@ -14,6 +15,7 @@ export default function Home() {
           <TodaysWeatherSection />
           <DailyForecastSection />
         </div>
+        <HourlyForecastSection />
       </div>
     </main>
   );
