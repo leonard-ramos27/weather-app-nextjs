@@ -4,3 +4,9 @@ export type DailyForecast = {
   temperatureMax: number;
   temperatureMin: number;
 };
+
+export type HourlyForecast = {
+  time: string,
+  weatherCode: number,
+  temperature: number
+}
