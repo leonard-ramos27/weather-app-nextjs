@@ -56,6 +56,7 @@ export default function WeatherIcon({ code, size }: { code: number, size: string
                 style={{
                     objectFit: 'cover',
                 }}
+                sizes={`${size === 'small' ? '40px' : '60px'}`}
                 alt="Weather Icon"
             />
         </div>

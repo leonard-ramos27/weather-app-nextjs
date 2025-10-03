@@ -16,6 +16,7 @@ export default function TodaysWeatherSection() {
                             style={{
                             objectFit: 'cover',
                             }}
+                            sizes="120px"
                             alt="Sunny Icon"
                         />
                     </div>
