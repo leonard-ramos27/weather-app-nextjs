@@ -1,19 +1,7 @@
-export enum UnitsType {
-    Imperial = "Imperial",
-    Metric = "Metric"
-}
+export type UnitsType = "Metric" | "Imperial"
 
-export enum TempType {
-    Celsius = "Celsius",
-    Fahrenheit = "Fahrenheit"
-}
+export type TempType = "Celsius" | "Fahrenheit"
 
-export enum WindSpeedType {
-    KmH = "km/h",
-    MpH = "mph"
-}
+export type WindSpeedType = "km/h" | "mph"
 
-export enum PrecipType {
-    Millimeters = "Millimeters",
-    Inches = "Inches"
-}
+export type PrecipType = "Millimeters" | "Inches"
