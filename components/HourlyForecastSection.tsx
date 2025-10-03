@@ -5,6 +5,7 @@ import DaysDropdown from "./DaysDropdown";
 import { getDatesFromHourlyData, transformHourlyData } from "@/lib/utils";
 import hourly_forecast_raw from "@/data/hourly-forecast";
 import HourlyWeatherCard from "./HourlyWeatherCard";
+import { ScrollArea } from "./ui/scroll-area";
 
 export default function HourlyForecastSection() {
     const [hourlyForecastData, setHourlyForecastData] = useState(
@@ -27,11 +28,13 @@ export default function HourlyForecastSection() {
                 <h2 className="text-preset-5">Hourly forecast</h2>
                 <DaysDropdown update_hourly_forecast={update_hourly_forecast}/>
             </div>
-            <div className="flex flex-col justify-between items-start gap-4 max-h-[592px] overflow-y-scroll">
-                {hourlyForecastData.map((data) => (
-                    <HourlyWeatherCard data={data} key={data.time}/>
-                ))}
-            </div>
+            <ScrollArea className="h-[592px]">
+                <div className="flex flex-col justify-between items-start gap-4">
+                    {hourlyForecastData.map((data) => (
+                        <HourlyWeatherCard data={data} key={data.time}/>
+                    ))}
+                </div>
+            </ScrollArea>
         </section>
     )
 }
