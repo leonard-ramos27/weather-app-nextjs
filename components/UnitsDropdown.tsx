@@ -13,34 +13,36 @@ import {
     DropdownMenuGroup, 
     DropdownMenuItemIndicator 
 } from "@radix-ui/react-dropdown-menu";
-import { 
-    PrecipType, 
-    TempType, 
-    UnitsType, 
-    WindSpeedType 
-} from "@/types/units";
 import Image from "next/image"
 import { Button } from "./ui/button";
-import { useState } from "react";
+import { useUnitsStore } from "@/providers/units-store-provider";
 
 export default function UnitsDropdown() {
-    const [unit, setUnit] = useState<UnitsType>("Metric")
-    const [tempUnit, setTempUnit] = useState<TempType>("Celsius")
-    const [windSpeedUnit, setWindSpeedUnit] = useState<WindSpeedType>("km/h")
-    const [precipUnit, setPrecipUnit] = useState<PrecipType>("Millimeters")
+    const { 
+        units, 
+        temperature, 
+        windspeed, 
+        precipitation, 
+        updateUnit, 
+        updateTemperature, 
+        updateWindSpeed, 
+        updatePrecipitation 
+    } = useUnitsStore(
+        (state) => state
+    )
 
     const switchUnit = (e: Event) => {
         e.preventDefault()
-        if(unit === "Imperial"){
-            setUnit("Metric")
-            setTempUnit("Celsius")
-            setWindSpeedUnit("km/h")
-            setPrecipUnit("Millimeters")
-        } else if (unit === "Metric") {
-            setUnit("Imperial")
-            setTempUnit("Fahrenheit")
-            setWindSpeedUnit("mph")
-            setPrecipUnit("Inches")
+        if(units === "Imperial"){
+            updateUnit("Metric")
+            updateTemperature("Celsius")
+            updateWindSpeed("km/h")
+            updatePrecipitation("Millimeters")
+        } else if (units === "Metric") {
+            updateUnit("Imperial")
+            updateTemperature("Fahrenheit")
+            updateWindSpeed("mph")
+            updatePrecipitation("Inches")
         }
     }
 
@@ -79,7 +81,7 @@ export default function UnitsDropdown() {
                 <DropdownMenuItem 
                     className="text-preset-7 px-2 pt-[9px] pb-[11px] min-w-[198px] rounded-[6px]"
                     onSelect={switchUnit}>
-                    Switch to {unit === "Imperial" ? 'Metric' : unit === "Metric" ? 'Imperial' : ''}
+                    Switch to {units === "Imperial" ? 'Metric' : units === "Metric" ? 'Imperial' : ''}
                 </DropdownMenuItem>
                 <DropdownMenuGroup className="my-1">
                     <DropdownMenuLabel className="text-preset-8 text-neutral-300 pb-0 pt-[3px] mb-[7px]">
@@ -87,10 +89,10 @@ export default function UnitsDropdown() {
                     </DropdownMenuLabel>
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7 mb-1"
-                        checked={tempUnit === "Celsius"}
+                        checked={temperature === "Celsius"}
                         onSelect={(e) => {
                             e.preventDefault()
-                            setTempUnit("Celsius")
+                            updateTemperature("Celsius")
                         }}
                     >
                         <span>Celsius (&deg;C)</span>
@@ -107,10 +109,10 @@ export default function UnitsDropdown() {
                     </DropdownMenuCheckboxItem>
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7"
-                        checked={tempUnit === "Fahrenheit"}
+                        checked={temperature === "Fahrenheit"}
                         onSelect={(e) => {
                             e.preventDefault()
-                            setTempUnit("Fahrenheit")
+                            updateTemperature("Fahrenheit")
                         }}
                     >
                         <span>Fahrenheit (&deg;F)</span>
@@ -133,10 +135,10 @@ export default function UnitsDropdown() {
                     </DropdownMenuLabel>
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7 mb-[3px]"
-                        checked={windSpeedUnit === "km/h"}
+                        checked={windspeed === "km/h"}
                         onSelect={(e) => {
                             e.preventDefault()
-                            setWindSpeedUnit("km/h")
+                            updateWindSpeed("km/h")
                         }}
                     >
                         <span>km/h</span>
@@ -153,10 +155,10 @@ export default function UnitsDropdown() {
                     </DropdownMenuCheckboxItem>
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7"
-                        checked={windSpeedUnit === "mph"}
+                        checked={windspeed === "mph"}
                         onSelect={(e) => {
                             e.preventDefault()
-                            setWindSpeedUnit("mph")
+                            updateWindSpeed("mph")
                         }}
                     >
                         <span>mph</span>
@@ -179,10 +181,10 @@ export default function UnitsDropdown() {
                     </DropdownMenuLabel>
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7 mb-1"
-                        checked={precipUnit === "Millimeters"}
+                        checked={precipitation === "Millimeters"}
                         onSelect={(e) => {
                             e.preventDefault()
-                            setPrecipUnit("Millimeters")
+                            updatePrecipitation("Millimeters")
                         }}
                     >
                         <span>Millimeters (mm)</span>
@@ -199,9 +201,9 @@ export default function UnitsDropdown() {
                     </DropdownMenuCheckboxItem>
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7"
-                        checked={precipUnit === "Inches"}
+                        checked={precipitation === "Inches"}
                         onSelect={(e) => {
-                            setPrecipUnit("Inches")
+                            updatePrecipitation("Inches")
                         }}
                     >
                         <span>Inches (in)</span>
