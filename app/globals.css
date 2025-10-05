@@ -226,7 +226,7 @@ input[type="search"]::-ms-reveal {
 
 /** TODAYS WEATHER SECTION STYLES **/
 .todays-weather-section .weather-info-card {
-  @apply bg-neutral-800 border-neutral-600 border rounded-[12px] text-left p-5 xl:p-[19px];
+  @apply bg-neutral-800 border-neutral-600 border rounded-[12px] text-left p-5 xl:p-[19px] xl:pr-[10px];
 }
 
 .todays-weather-section .weather-info-card .label{
