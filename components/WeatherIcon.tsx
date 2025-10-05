@@ -49,14 +49,14 @@ export default function WeatherIcon({ code, size }: { code: number, size: string
     const src = `/images/icon-${weatherCodeToIcon[code] ?? 'sunny'}.webp`
 
     return (
-        <div className={`relative ${size === 'small' ? 'w-[40px] h-[40px]' : 'w-[60px] h-[60px]'}`}>
+        <div className={`relative ${size === 'small' ? 'w-[40px] h-[40px]' : size === 'large' ? 'w-[60px] h-[60px]' : 'w-[120px] h-[120px]'}`}>
             <Image 
                 src={src}
                 fill
                 style={{
                     objectFit: 'cover',
                 }}
-                sizes={`${size === 'small' ? '40px' : '60px'}`}
+                sizes={`${size === 'small' ? '40px' :  size === 'large' ? '60px' : '120px'}`}
                 alt="Weather Icon"
             />
         </div>
