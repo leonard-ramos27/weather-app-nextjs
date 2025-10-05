@@ -11,16 +11,17 @@ import { SearchParams } from "@/types/search-params";
 interface Props {
     displayNoResults: () => void,
     hideNoResults: () => void,
+    updateSearchParams: (new_search_params: SearchParams) => void,
 }
 
-export default function SearchBar({ displayNoResults, hideNoResults }: Props) {
+export default function SearchBar({ displayNoResults, hideNoResults, updateSearchParams }: Props) {
     const [query, setQuery] = useState("")
-    const [searchParams, setSearchParams] = useState<SearchParams|null>(null)
+    const [selectedLocation, setSelectedLocation] = useState<SearchParams|null>(null)
     const [showSuggestionsDropdown, setShowSuggestionsDropdown] = useState(false)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setQuery(e.target.value.trim())
-        setSearchParams(null)
+        setQuery(e.target.value)
+        setSelectedLocation(null)
         if(e.target.value.trim()) {
             setShowSuggestionsDropdown(true)
         } else {
@@ -30,8 +31,9 @@ export default function SearchBar({ displayNoResults, hideNoResults }: Props) {
 
     const selectSuggestion = (data: LocationData) => {
         setQuery(data.name)
-        setSearchParams({
+        setSelectedLocation({
             name: data.name,
+            country: data.country,
             latitude: data.latitude,
             longitude: data.longitude
         })
@@ -41,19 +43,25 @@ export default function SearchBar({ displayNoResults, hideNoResults }: Props) {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setShowSuggestionsDropdown(false)
-        if(query && searchParams!== null) {
+        if(query && selectedLocation !== null) {
             hideNoResults()
-            // proceed with fetching weather data
+            updateSearchParams(selectedLocation)
         } else if (query) {
             const coordinates = await getCoordinates(query)
             if(coordinates !== null) {
-                setSearchParams({
+                setSelectedLocation({
                     name: coordinates.name,
+                    country: coordinates.country,
                     latitude: coordinates.latitude,
                     longitude: coordinates.longitude
                 })
                 hideNoResults()
-                // proceed with fetching weather data
+                updateSearchParams({
+                    name: coordinates.name,
+                    country: coordinates.country,
+                    latitude: coordinates.latitude,
+                    longitude: coordinates.longitude
+                })
             } else {
                 displayNoResults()
             }
@@ -94,7 +102,7 @@ export default function SearchBar({ displayNoResults, hideNoResults }: Props) {
                 </button>
                 {query && showSuggestionsDropdown &&
                     <SearchSuggestionsDropdown 
-                        query={query} 
+                        query={query.trim()} 
                         selectSuggestion={selectSuggestion}
                     />
                 }
