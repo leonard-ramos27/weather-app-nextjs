@@ -50,6 +50,8 @@ Users should be able to:
 - [Next.js](https://nextjs.org/) - React framework
 - [Tailwind](https://tailwindcss.com/) - For styles
 - [Shadcn UI](https://ui.shadcn.com/) - UI components
+- [SWR](https://swr.vercel.app/) - Data Fetching
+- [Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction) - State Management
 
 ### What I learned
 
