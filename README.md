@@ -55,6 +55,12 @@ Users should be able to:
 
 This is my first ever attempt at making a NextJS App and my first every try joining a Hackathon. I've learned so much with differentiating server and client components as well as using libraries like SWR for fetching data and Zustand for global state management. 
 
+I've known about the Hackathon kind of late and so I only had more than two weeks to do the app. At first I was only planning to use plain React but then I thought this might also be the best time to try NextJS. I've watched a lot of tutorials on how to make NextJS work with other libraries like React Query and Redux however it mostly confused me. At the end, I've tried to just follow the official documentation and it seems to be the best move. I've decided to go with SWR due to its simple setup and I choose Zustand since it's less complex compared to Redux.
+
+My goal was just to implement all the basic requirements and follow the design for the app instead of changing the styles and adding more functionalities due to the time constraint, but if given more time I would love to try adding more features like geolocation detection and favorite locations.
+
+I'm really glad I was able to join a Hackathon since it is something I've always seen other devs do and I have always looked for one that is focused on front end developers. It was very challenging but it was also rewarding with all the new things I've learned.
+
 ### Useful resources
 
 - [NextJS Docs](https://nextjs.org/docs) - I've tried watching tutorials for using nextjs but in the end following the documentation is what actually get me there.
