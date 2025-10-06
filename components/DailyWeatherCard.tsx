@@ -8,7 +8,7 @@ export default function DailyWeatherCard({ data }: { data: DailyForecast}) {
         <div className="bg-neutral-800 border-neutral-600 border rounded-[12px] py-4 px-2.5 flex flex-col justify-between items-center gap-[15px]">
             <h3 className="text-preset-6">{formatted_date}</h3>
             <WeatherIcon code={data.weatherCode} size="large"/>
-            <div className="flex flex-row justify-between items-center w-full">
+            <div className="flex flex-row flex-wrap justify-between items-center w-full">
                 <span className="text-preset-7">{data.temperatureMax}&deg;</span>
                 <span className="text-preset-7">{data.temperatureMin}&deg;</span>
             </div>
