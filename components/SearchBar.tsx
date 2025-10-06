@@ -11,10 +11,11 @@ import { SearchParams } from "@/types/search-params";
 interface Props {
     displayNoResults: () => void,
     hideNoResults: () => void,
+    displayErrorMessage: () => void,
     updateSearchParams: (new_search_params: SearchParams) => void,
 }
 
-export default function SearchBar({ displayNoResults, hideNoResults, updateSearchParams }: Props) {
+export default function SearchBar({ displayNoResults, hideNoResults, updateSearchParams, displayErrorMessage }: Props) {
     const [query, setQuery] = useState("")
     const [selectedLocation, setSelectedLocation] = useState<SearchParams|null>(null)
     const [showSuggestionsDropdown, setShowSuggestionsDropdown] = useState(false)
@@ -49,23 +50,28 @@ export default function SearchBar({ displayNoResults, hideNoResults, updateSearc
             hideNoResults()
             updateSearchParams(selectedLocation)
         } else if (query) {
-            const coordinates = await getCoordinates(query)
-            if(coordinates !== null) {
-                setSelectedLocation({
-                    name: coordinates.name,
-                    country: coordinates.country,
-                    latitude: coordinates.latitude,
-                    longitude: coordinates.longitude
-                })
+            try {
+                const coordinates = await getCoordinates(query)
+                if(coordinates !== null) {
+                    setSelectedLocation({
+                        name: coordinates.name,
+                        country: coordinates.country,
+                        latitude: coordinates.latitude,
+                        longitude: coordinates.longitude
+                    })
+                    hideNoResults()
+                    updateSearchParams({
+                        name: coordinates.name,
+                        country: coordinates.country,
+                        latitude: coordinates.latitude,
+                        longitude: coordinates.longitude
+                    })
+                } else {
+                    displayNoResults()
+                }
+            } catch (error) {
+                displayErrorMessage()
                 hideNoResults()
-                updateSearchParams({
-                    name: coordinates.name,
-                    country: coordinates.country,
-                    latitude: coordinates.latitude,
-                    longitude: coordinates.longitude
-                })
-            } else {
-                displayNoResults()
             }
         }
     }
