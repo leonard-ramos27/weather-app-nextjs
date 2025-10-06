@@ -9,15 +9,14 @@ import {
 import Image from "next/image"
 import { Button } from "./ui/button";
 import { useState } from "react";
-import { getDatesFromHourlyData } from "@/lib/utils";
-import hourly_forecast_raw from "@/data/hourly-forecast";
+import dayjs from "dayjs";
 
-function format_date_long (day: string) {
-    return new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(new Date(day));
+interface Props { 
+    update_hourly_forecast: (new_date: string) => void,
+    days: string[]
 }
 
-export default function DaysDropdown({ update_hourly_forecast } : { update_hourly_forecast: (new_date: string) => void }) {
-    const days = getDatesFromHourlyData(hourly_forecast_raw.hourly)
+export default function DaysDropdown({ update_hourly_forecast, days } : Props) {
     const [selectedDay, setSelectedDay] = useState(days[0])
 
     const switchDay = (e: Event, day: string) => {
@@ -30,7 +29,7 @@ export default function DaysDropdown({ update_hourly_forecast } : { update_hourl
         <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
                 <Button className="min-w-[120px] min-h-[37px] py-2 px-4 flex flex-row justify-between items-center gap-3 rounded-lg bg-neutral-600 hover:bg-neutral-600/70 focus:bg-neutral-600/70 focus-visible:ring-2 focus-visible:ring-neutral-0 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-800">
-                    <span className="text-[15px] font-dm-sans font-medium leading-normal tracking-wide">{format_date_long(selectedDay)}</span>
+                    <span className="text-[15px] font-dm-sans font-medium leading-normal tracking-wide">{dayjs(selectedDay).format('dddd')}</span>
                     <div className="relative w-3.5 h-[18px]">
                         <Image 
                             src="/images/icon-dropdown.svg"
@@ -52,7 +51,7 @@ export default function DaysDropdown({ update_hourly_forecast } : { update_hourl
                         <DropdownMenuItem key={day}
                             className={`text-preset-7 px-2 pt-[9px] pb-[11px] min-w-[198px] rounded-[8px] ${selectedDay === day ? 'bg-neutral-700' : ''}`}
                             onSelect={(e) => switchDay(e, day)}>
-                            {format_date_long(day)}
+                            {dayjs(day).format('dddd')}
                         </DropdownMenuItem>
                 ))}
                 
