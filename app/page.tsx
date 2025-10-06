@@ -9,7 +9,12 @@ import { useState } from "react";
 
 export default function Home() {
   const [noSearchResults, setNoSearchResults] = useState(false)
-  const [searchParams, setSearchParams] = useState<SearchParams|null>(null)
+  const [searchParams, setSearchParams] = useState<SearchParams>({
+    name: "Berlin",
+    country: "Germany",
+    latitude: 52.52437,
+    longitude: 13.41053
+  })
 
   const displayNoResults = () => setNoSearchResults(true)
   const hideNoResults = () => setNoSearchResults(false)
@@ -27,16 +32,14 @@ export default function Home() {
       />
       {noSearchResults ? (
         <div className="mt-4 text-center text-preset-4">No search result found!</div> 
-      ) : searchParams !== null ? (
+      ) : (
         <div className="flex flex-col gap-8 xl:flex-row w-full">
           <div className="mb-8 xl:mb-0 xl:flex-1">
             <TodaysWeatherSection searchParams={searchParams}/>
-            <DailyForecastSection />
+            <DailyForecastSection searchParams={searchParams}/>
           </div>
-          <HourlyForecastSection />
+          <HourlyForecastSection searchParams={searchParams}/>
         </div>
-      ) : (
-        <div></div>
       )}
     </main>
   );
