@@ -192,7 +192,7 @@ body {
 
 /** DROPDOWN MENU STYLES **/
 .dropdown-menu-trigger {
-  @apply w-[89px] h-[33px] md:w-[119px] md:h-[43px] bg-neutral-800 text-neutral-0 hover:bg-neutral-700 active:bg-neutral-700 rounded-[6px] md:rounded-[8px] px-2.5 py-2 md:px-4 md:py-3 flex flex-row justify-center items-center gap-1.5 md:gap-2.5;
+  @apply w-[89px] h-[33px] md:w-[119px] md:h-[43px] bg-neutral-800 text-neutral-0 hover:bg-neutral-700 active:bg-neutral-700 rounded-[6px] md:rounded-[8px] px-2.5 py-2 md:px-4 md:py-3 flex flex-row justify-center items-center gap-1.5 md:gap-2.5 focus-visible:ring-2 focus-visible:ring-neutral-0 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-800;
 }
 
 .dropdown-menu-checkbox {

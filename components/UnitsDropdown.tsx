@@ -32,7 +32,6 @@ export default function UnitsDropdown() {
     )
 
     const switchUnit = (e: Event) => {
-        e.preventDefault()
         if(units === "Imperial"){
             updateUnit("Metric")
             updateTemperature("Celsius")
@@ -90,10 +89,7 @@ export default function UnitsDropdown() {
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7 mb-1"
                         checked={temperature === "Celsius"}
-                        onSelect={(e) => {
-                            e.preventDefault()
-                            updateTemperature("Celsius")
-                        }}
+                        onSelect={() => updateTemperature("Celsius")}
                     >
                         <span>Celsius (&deg;C)</span>
                         <DropdownMenuItemIndicator className="dropdown-menu-item-indicator">
@@ -110,10 +106,7 @@ export default function UnitsDropdown() {
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7"
                         checked={temperature === "Fahrenheit"}
-                        onSelect={(e) => {
-                            e.preventDefault()
-                            updateTemperature("Fahrenheit")
-                        }}
+                        onSelect={() =>updateTemperature("Fahrenheit")}
                     >
                         <span>Fahrenheit (&deg;F)</span>
                         <DropdownMenuItemIndicator className="dropdown-menu-item-indicator">
@@ -136,10 +129,7 @@ export default function UnitsDropdown() {
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7 mb-[3px]"
                         checked={windspeed === "km/h"}
-                        onSelect={(e) => {
-                            e.preventDefault()
-                            updateWindSpeed("km/h")
-                        }}
+                        onSelect={() => updateWindSpeed("km/h")}
                     >
                         <span>km/h</span>
                         <DropdownMenuItemIndicator className="dropdown-menu-item-indicator">
@@ -156,10 +146,7 @@ export default function UnitsDropdown() {
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7"
                         checked={windspeed === "mph"}
-                        onSelect={(e) => {
-                            e.preventDefault()
-                            updateWindSpeed("mph")
-                        }}
+                        onSelect={() => updateWindSpeed("mph")}
                     >
                         <span>mph</span>
                         <DropdownMenuItemIndicator className="dropdown-menu-item-indicator">
@@ -182,10 +169,7 @@ export default function UnitsDropdown() {
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7 mb-1"
                         checked={precipitation === "Millimeters"}
-                        onSelect={(e) => {
-                            e.preventDefault()
-                            updatePrecipitation("Millimeters")
-                        }}
+                        onSelect={() => updatePrecipitation("Millimeters")}
                     >
                         <span>Millimeters (mm)</span>
                         <DropdownMenuItemIndicator className="dropdown-menu-item-indicator">
@@ -202,9 +186,7 @@ export default function UnitsDropdown() {
                     <DropdownMenuCheckboxItem 
                         className="dropdown-menu-checkbox text-preset-7"
                         checked={precipitation === "Inches"}
-                        onSelect={(e) => {
-                            updatePrecipitation("Inches")
-                        }}
+                        onSelect={() => updatePrecipitation("Inches")}
                     >
                         <span>Inches (in)</span>
                         <DropdownMenuItemIndicator className="dropdown-menu-item-indicator">

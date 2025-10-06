@@ -19,8 +19,7 @@ interface Props {
 export default function DaysDropdown({ update_hourly_forecast, days } : Props) {
     const [selectedDay, setSelectedDay] = useState(days[0])
 
-    const switchDay = (e: Event, day: string) => {
-        e.preventDefault()
+    const switchDay = (day: string) => {
         setSelectedDay(day)
         update_hourly_forecast(day)
     }
@@ -50,7 +49,7 @@ export default function DaysDropdown({ update_hourly_forecast, days } : Props) {
                 {days.map((day) => (
                         <DropdownMenuItem key={day}
                             className={`text-preset-7 px-2 pt-[9px] pb-[11px] min-w-[198px] rounded-[8px] ${selectedDay === day ? 'bg-neutral-700' : ''}`}
-                            onSelect={(e) => switchDay(e, day)}>
+                            onSelect={() => switchDay(day)}>
                             {dayjs(day).format('dddd')}
                         </DropdownMenuItem>
                 ))}
