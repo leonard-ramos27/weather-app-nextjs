@@ -3,12 +3,14 @@
 import DailyForecastSection from "@/components/DailyForecastSection";
 import HourlyForecastSection from "@/components/HourlyForecastSection";
 import SearchBar from "@/components/SearchBar";
+import SomethingWentWrong from "@/components/SomethingWentWrong";
 import TodaysWeatherSection from "@/components/TodaysWeatherSection";
 import { SearchParams } from "@/types/search-params";
 import { useState } from "react";
 
 export default function Home() {
   const [noSearchResults, setNoSearchResults] = useState(false)
+  const [somethingWentWrong, setSomethingWentWrong] = useState(false)
   const [searchParams, setSearchParams] = useState<SearchParams>({
     name: "Berlin",
     country: "Germany",
@@ -18,7 +20,14 @@ export default function Home() {
 
   const displayNoResults = () => setNoSearchResults(true)
   const hideNoResults = () => setNoSearchResults(false)
+  const displayErrorMessage = () => !somethingWentWrong && setSomethingWentWrong(true)
   const updateSearchParams = (new_search_params : SearchParams) => setSearchParams(new_search_params)
+
+  if(somethingWentWrong) return (
+    <main>
+      <SomethingWentWrong />
+    </main>
+  )
 
   return (
     <main>
@@ -28,6 +37,7 @@ export default function Home() {
       <SearchBar 
         displayNoResults={displayNoResults}
         hideNoResults={hideNoResults}
+        displayErrorMessage={displayErrorMessage}
         updateSearchParams={updateSearchParams}
       />
       {noSearchResults ? (
@@ -35,7 +45,10 @@ export default function Home() {
       ) : (
         <div className="flex flex-col gap-8 xl:flex-row w-full">
           <div className="mb-8 xl:mb-0 xl:flex-1">
-            <TodaysWeatherSection searchParams={searchParams}/>
+            <TodaysWeatherSection 
+              searchParams={searchParams}
+              displayErrorMessage={displayErrorMessage}
+            />
             <DailyForecastSection searchParams={searchParams}/>
           </div>
           <HourlyForecastSection searchParams={searchParams}/>
