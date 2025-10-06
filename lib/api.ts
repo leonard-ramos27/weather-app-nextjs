@@ -5,7 +5,14 @@ import { LocationData, SearchSuggestions } from "@/types/search-suggestions";
 import { PrecipType, TempType, WindSpeedType } from "@/types/units";
 import useSWR from "swr";
 
-const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
+const fetcher = async (url: string) => {
+    const response = await fetch(url)
+    if(!response.ok) {
+        const error = new Error(`An error occurred while fetching the data: ${response.statusText}`)
+        throw error
+    }
+    return response.json()
+}
 
 export function getSearchSuggestions(query: string) {
     const { data, isLoading, error} = useSWR(`https://geocoding-api.open-meteo.com/v1/search?name=${query}&count=10&language=en&format=json`, fetcher)
