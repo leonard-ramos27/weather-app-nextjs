@@ -37,8 +37,7 @@ export function transformHourlyData(hourly : {
 ): HourlyForecast[] {
   const data: HourlyForecast[] = []
   hourly.time.map((timestamp, index) => {
-    const [day, hour] = timestamp.split("T")
-    if(day === date) {
+    if(timestamp.split("T")[0] === date.split("T")[0]) {
       data.push({
         time: timestamp,
         weatherCode: hourly.weather_code[index],
