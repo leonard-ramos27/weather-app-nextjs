@@ -18,7 +18,7 @@ export default function SomethingWentWrong() {
           />
         </div>
         <h1 className="text-preset-2">Something went wrong</h1>
-        <p className="text-preset-5-medium max-w-[554px] text-center text-neutral-200">We couldn't connect to the server (API error). Please try again in a few moments.</p>
+        <p className="text-preset-5-medium max-w-[554px] text-center text-neutral-200">We couldn&apos;t connect to the server (API error). Please try again in a few moments.</p>
         <Button 
             className="bg-[#262540] px-4 py-5 rounded-[6px] flex flex-row justify-between items-center gap-2.5"
             onClick={handleRetry}>

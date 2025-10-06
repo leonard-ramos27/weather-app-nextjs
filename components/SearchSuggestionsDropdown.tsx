@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Button } from "./ui/button";
-import { getSearchSuggestions } from "@/lib/api";
+import { useFetchSearchSuggestions } from "@/lib/api";
 import { LocationData } from "@/types/search-suggestions";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function SearchSuggestionsDropdown({ query, selectSuggestion } : Props) {
-    const { suggestions, isLoading, error } = getSearchSuggestions(query)
+    const { suggestions, isLoading, error } = useFetchSearchSuggestions(query)
 
     const handleClick = (data: LocationData) => {
         selectSuggestion(data)

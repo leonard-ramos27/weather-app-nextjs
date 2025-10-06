@@ -1,6 +1,6 @@
 'use client';
 
-import { getWeatherData } from "@/lib/api";
+import { useFetchWeatherData } from "@/lib/api";
 import { useUnitsStore } from "@/providers/units-store-provider";
 import { SearchParams } from "@/types/search-params";
 import dayjs from "dayjs";
@@ -16,7 +16,7 @@ interface Props {
 
 export default function TodaysWeatherSection({searchParams, displayErrorMessage} : Props) {
     const {  temperature, windspeed, precipitation, } = useUnitsStore((state) => state)
-    const { weather_data, isLoading, error } = getWeatherData({
+    const { weather_data, isLoading, error } = useFetchWeatherData({
         latitude: searchParams.latitude,
         longitude: searchParams.longitude,
         temp_unit: temperature,
@@ -26,7 +26,6 @@ export default function TodaysWeatherSection({searchParams, displayErrorMessage}
 
     useEffect(() => {
         if(error !== undefined){
-            console.log(weather_data, error)
             displayErrorMessage()
         } 
     }, [error])

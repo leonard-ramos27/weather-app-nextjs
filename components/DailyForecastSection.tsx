@@ -4,11 +4,11 @@ import { transformDailyData } from "@/lib/utils"
 import DailyWeatherCard from "./DailyWeatherCard"
 import { SearchParams } from "@/types/search-params"
 import { useUnitsStore } from "@/providers/units-store-provider"
-import { getWeatherData } from "@/lib/api"
+import { useFetchWeatherData } from "@/lib/api"
 
 export default function DailyForecastSection({searchParams} : {searchParams: SearchParams}) {
     const {  temperature, windspeed, precipitation, } = useUnitsStore((state) => state)
-    const { weather_data, isLoading, error } = getWeatherData({
+    const { weather_data, isLoading, error } = useFetchWeatherData({
         latitude: searchParams.latitude,
         longitude: searchParams.longitude,
         temp_unit: temperature,
