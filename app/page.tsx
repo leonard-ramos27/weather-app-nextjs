@@ -30,7 +30,7 @@ export default function Home() {
   )
 
   return (
-    <main>
+    <main className="xl:mx-auto xl:max-w-[1216px]">
       <div className="text-center md:max-w-[482px] xl:max-w-[731px] mx-auto mb-12 xl:mb-16">
         <h1 className="text-preset-2">How&apos;s the sky looking today?</h1>
       </div>

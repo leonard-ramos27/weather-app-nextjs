@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${bricolageGrotesque.variable} ${dmSans.variable} antialiased px-4 pt-4 pb-12 md:px-6 md:pt-6 md md:pb-20 xl:px-28 xl:pt-12 min-h-screen`}
+        className={`${bricolageGrotesque.variable} ${dmSans.variable} antialiased px-4 pt-4 pb-12 md:px-6 md:pt-6 md md:pb-20 xl:px-12 xl:pt-10 min-h-screen`}
       >
         <UnitsStoreProvider>
           <Header />

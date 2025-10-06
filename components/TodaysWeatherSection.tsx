@@ -41,7 +41,7 @@ export default function TodaysWeatherSection({searchParams, displayErrorMessage}
                                 {dayjs(weather_data.current.time).format('ddd, MMM D, YYYY')}
                             </h2>
                         </div>
-                        <div className="flex flex-row justify-start items-center gap-5 xl:pr-[3px]">
+                        <div className="flex flex-row justify-between md:justify-start items-center gap-1 md:gap-5 xl:pr-[3px] -ml-3 md:ml-0">
                             <WeatherIcon code={weather_data.current.weather_code} size="x-large" />
                             <h2 className="text-preset-1">{weather_data.current.temperature_2m}&deg;</h2>
                         </div>
