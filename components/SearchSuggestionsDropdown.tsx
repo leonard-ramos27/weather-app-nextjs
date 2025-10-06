@@ -46,7 +46,7 @@ export default function SearchSuggestionsDropdown({ query, selectSuggestion } : 
                             type="button"
                             className="text-preset-7 justify-start py-2.5 px-2 hover:bg-neutral-700 hover:border-neutral-600 border border-neutral-800 rounded-xl"
                             onClick={() => handleClick(data)}>
-                            {data.name}
+                            {data.name}, {data.country}
                         </Button>
                     ))}
                 </Container>

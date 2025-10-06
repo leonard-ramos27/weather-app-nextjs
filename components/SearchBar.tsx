@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Input } from "./ui/input";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import SearchSuggestionsDropdown from "./SearchSuggestionsDropdown";
 import { LocationData } from "@/types/search-suggestions";
 import { getCoordinates } from "@/lib/api";
@@ -18,6 +18,7 @@ export default function SearchBar({ displayNoResults, hideNoResults, updateSearc
     const [query, setQuery] = useState("")
     const [selectedLocation, setSelectedLocation] = useState<SearchParams|null>(null)
     const [showSuggestionsDropdown, setShowSuggestionsDropdown] = useState(false)
+    const submitButton = useRef<HTMLButtonElement|null>(null)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value)
@@ -30,7 +31,7 @@ export default function SearchBar({ displayNoResults, hideNoResults, updateSearc
     }
 
     const selectSuggestion = (data: LocationData) => {
-        setQuery(data.name)
+        setQuery(`${data.name}, ${data.country}`)
         setSelectedLocation({
             name: data.name,
             country: data.country,
@@ -38,6 +39,7 @@ export default function SearchBar({ displayNoResults, hideNoResults, updateSearc
             longitude: data.longitude
         })
         setShowSuggestionsDropdown(false)
+        submitButton.current?.focus()
     }
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -96,8 +98,9 @@ export default function SearchBar({ displayNoResults, hideNoResults, updateSearc
                     />
                 </div>
                 <button 
+                    ref={submitButton}
                     type="submit"
-                    className="bg-blue-500 text-neutral-0 rounded-[12px] p-4 md:px-6 md:max-w-[114px] text-preset-5-medium text-center active:outline-3 active:outline-neutral-900 active:shadow-blue-500 active:shadow-[0px_0px_0px_5px_var(--tw-shadow-color)]">
+                    className="bg-blue-500 text-neutral-0 rounded-[12px] p-4 md:px-6 md:max-w-[114px] text-preset-5-medium text-center active:outline-3 active:outline-neutral-900 active:shadow-blue-500 active:shadow-[0px_0px_0px_5px_var(--tw-shadow-color)] focus-visible:outline-3 focus-visible:outline-neutral-900 focus-visible:shadow-blue-500 focus-visible:shadow-[0px_0px_0px_5px_var(--tw-shadow-color)]">
                     Search
                 </button>
                 {query && showSuggestionsDropdown &&
