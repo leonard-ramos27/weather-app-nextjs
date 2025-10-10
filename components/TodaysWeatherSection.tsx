@@ -65,7 +65,7 @@ export default function TodaysWeatherSection({searchParams, displayErrorMessage}
                     <p className="text-preset-6 label">Feels Like</p>
                     <p className="text-preset-3">
                         {weather_data !== undefined && !isLoading && (
-                            <span>{weather_data.daily.temperature_2m_min[0]}&deg;</span>
+                            <span>{weather_data.current.apparent_temperature}&deg;</span>
                         )}
                         {isLoading && <span>&mdash;</span>}
                     </p>

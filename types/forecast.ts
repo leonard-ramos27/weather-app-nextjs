@@ -19,6 +19,7 @@ export interface CurrentUnits {
   wind_speed_10m: string;
   precipitation: string;
   weather_code: string;
+  apparent_temperature: string;
 }
 
 export interface CurrentData {
@@ -29,6 +30,7 @@ export interface CurrentData {
   wind_speed_10m: number;
   precipitation: number;
   weather_code: number;
+  apparent_temperature: number;
 }
 
 export interface HourlyUnits {
