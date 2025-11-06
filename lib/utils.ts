@@ -1,6 +1,8 @@
-import { DailyForecast, HourlyForecast } from "@/types/forecast"
+import { DailyForecast, geoLocationData, HourlyForecast } from "@/types/forecast"
 import { clsx, type ClassValue } from "clsx"
+import { SearchParams } from "@/types/search-params"
 import { twMerge } from "tailwind-merge"
+import { getLocationFromCoordinates } from "./api"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -46,4 +48,23 @@ export function transformHourlyData(hourly : {
     }
   })
   return data
+}
+
+export function getGeoLocation(): Promise<geoLocationData | null> {
+  return new Promise((resolve) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        resolve({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        })
+      }, () => {
+        console.log("Geolocation declined.")
+        resolve(null)
+      });
+    } else {
+      console.log("Geolocation not supported")
+      resolve(null)
+    }
+  })
 }

@@ -40,6 +40,27 @@ export async function getCoordinates(query: string): Promise<LocationData | null
     return locationMatch
 }
 
+export async function getLocationFromCoordinates(latitude: number, longitude: number) {
+    try {
+        const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=jsonv2&accept-language=en`, {
+            headers: {
+                "User-Agent": "Weather Now App/1.0 (https://leonard-ramos-dev.netlify.app/)"
+            }
+        })
+        const data = await response.json()
+        return {
+            name: 
+                data.address.city as string ||
+                data.address.state as string ||
+                data.address.town as string ||
+                data.address.county as string, 
+            country: data.address.country as string
+        }
+    } catch (error) {
+        throw new Error(`Error with reverse fetching location: ${error}`)
+    }
+}
+
 interface GetWeatherDataProps {
     latitude: number,
     longitude: number,

@@ -74,3 +74,8 @@ export interface WeatherData {
   daily_units: DailyUnits;
   daily: DailyData;
 }
+
+export type geoLocationData = {
+  latitude: number,
+  longitude: number
+} | null

@@ -5,8 +5,10 @@ import HourlyForecastSection from "@/components/HourlyForecastSection";
 import SearchBar from "@/components/SearchBar";
 import SomethingWentWrong from "@/components/SomethingWentWrong";
 import TodaysWeatherSection from "@/components/TodaysWeatherSection";
+import { getLocationFromCoordinates } from "@/lib/api";
+import { getGeoLocation } from "@/lib/utils";
 import { SearchParams } from "@/types/search-params";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [noSearchResults, setNoSearchResults] = useState(false)
@@ -17,6 +19,27 @@ export default function Home() {
     latitude: 52.52437,
     longitude: 13.41053
   })
+
+  useEffect(() => {
+    const getCurrentLocation = async () => {
+      try {
+        const currentCoordinates = await getGeoLocation()
+        if(currentCoordinates) {
+          const location = await getLocationFromCoordinates(currentCoordinates.latitude, currentCoordinates.longitude)
+          setSearchParams({
+            name: location.name,
+            country: location.country,
+            latitude: currentCoordinates.latitude,
+            longitude: currentCoordinates.longitude
+          })
+        }
+      } catch (error) {
+        console.log("Cannot fetch current location: ", error)
+      }
+    }
+
+    getCurrentLocation()
+  }, [])
 
   const displayNoResults = () => setNoSearchResults(true)
   const hideNoResults = () => setNoSearchResults(false)
